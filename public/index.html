@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeChat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <form id="chat">
+        <h2 class="top"><i class="fa fa-comments-o" aria-hidden="true"></i> Node Chat</h2><br></br>
+        <input type="text" name="username" placeholder="como você quer ser chamado ?">
+        <div class="messages"></div>
+        <input type="text" name="message" placeholder="digite a mensagem :) ">
+        <button type="submit"><i class="fa fa-telegram" aria-hidden="true"></i> Enviar</button>
+    </form>
+    <script type="text/javascript">
+    var socker = io('http://10.103.0.180:3000')
+
+        function renderMessage(message){
+            $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>')
+        }
+
+        socker.on('previousMessages',function(messages){
+            for(message of messages){
+                renderMessage(message)
+            }
+        })
+
+        socker.on('receveivedMessage',function(message){
+            renderMessage(message)
+        })
+
+    $('#chat').submit(function(event){
+        event.preventDefault();
+        var author =  $('input[name=username]').val();
+        var message = $('input[name=message]').val();
+
+        if(author && message != null) {
+            var messageObject = {
+                author:author,
+                message:message,
+            }
+            renderMessage(messageObject)
+            socker.emit('sendMessage',messageObject);
+        }
+
+        $('input[name=message]').val("");
+       
+            
+        //socker.emit('sendMessage',messageObject);
+    })
+    </script>
+</body>
+</html>
