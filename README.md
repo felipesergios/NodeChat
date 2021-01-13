@@ -10,4 +10,4 @@ Projeto base no [canal rocketseat](https://www.youtube.com/watch?v=-jXfKDYJJvo)
     - Jquery
     - Socket Io
     - Express
-![Tela da plataforma](public/background.jpg)
+![Tela da plataforma](public/tela.jpg)
