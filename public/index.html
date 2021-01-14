@@ -19,7 +19,9 @@
         <button type="submit"><i class="fa fa-telegram" aria-hidden="true"></i> Enviar</button>
     </form>
     <script type="text/javascript">
-    var socker = io('http://localhost:3000')
+    
+    var URL = '127.0.0.1'
+    var socker = io(`${URL}:3000`)
 
         function renderMessage(message){
             $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>')
