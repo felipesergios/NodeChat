@@ -28,11 +28,7 @@
             $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>')
         }
 
-        socker.on('previousMessages',function(messages){
-            for(message of messages){
-                renderMessage(message)
-            }
-        })
+        
 
         socker.on('receveivedMessage',function(message){
             renderMessage(message)
