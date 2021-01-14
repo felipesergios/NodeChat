@@ -21,9 +21,8 @@
     <script type="text/javascript">
     var porta = process.env.PORT || 8080;
 
-    console.log(porta)
-    var URL = '127.0.0.1'
-    var socker = io(`${URL}:3000`)
+   
+    var socker = io('https://nodewebchatbr.herokuapp.com/')
 
         function renderMessage(message){
             $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>')
