@@ -19,7 +19,9 @@
         <button type="submit"><i class="fa fa-telegram" aria-hidden="true"></i> Enviar</button>
     </form>
     <script type="text/javascript">
-    
+    var porta = process.env.PORT || 8080;
+
+    console.log(porta)
     var URL = '127.0.0.1'
     var socker = io(`${URL}:3000`)
 
